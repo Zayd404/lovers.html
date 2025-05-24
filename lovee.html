@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Khusus untukmu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffe6e6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    #chat {
+      width: 100%;
+      max-width: 400px;
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .bubble {
+      margin: 0.5rem 0;
+    }
+    .bot {
+      background: #ffcccc;
+      padding: 0.5rem;
+      border-radius: 10px;
+    }
+    .user {
+      text-align: right;
+      color: #555;
+    }
+    input, button {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      width: 100%;
+      font-size: 1rem;
+    }
+‎    img.gif {
+‎      width: 100%;
+‎      max-width: 300px;
+‎      border-radius: 10px;
+‎    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to</h1>
+  <h2>Chatbot Zayd - AIBOT</h2>
+  <!-- GIF lucu -->
+‎  <img class="gif" src="https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif" alt="GIF lucu" />
+  <div id="chat">
+    <div class="bubble bot">Hai! Aku yang sedang menunggu chat dari kamu. Ketikan salah satu yang tersedia berikut: assalamualaikum, kangen, kamu maukan jadi pacar aku?, lagi apa?, aku boleh jujur?, aku suka sama kamu, lagi</div>
+  </div>
+  <input type="text" id="input" placeholder="Tulis pesanmu..." />
+  <button onclick="sendMessage()">Kirim</button>
+
+  <script>
+    const chat = document.getElementById('chat');
+
+    function sendMessage() {
+      const input = document.getElementById('input');
+      const text = input.value.trim().toLowerCase();
+      if (!text) return;
+
+      addBubble(text, 'user');
+      input.value = '';
+      setTimeout(() => respond(text), 500);
+    }
+
+    function addBubble(message, sender) {
+      const bubble = document.createElement('div');
+      bubble.className = `bubble ${sender}`;
+      bubble.innerText = message;
+      chat.appendChild(bubble);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function respond(text) {
+      let response = '';
+
+      switch (text) {
+        case 'assalamualaikum':
+          response = 'Waalaikumsallam... kamu tahu nggak? Dengar “salam” darimu tuh bikin hariku cerah😇.';
+          break;
+        case 'kangen':
+          response = 'Aku juga kangen banget sama kamu… rasanya kayak nonton drakor tapi skip episode kamu hehehe😁.';
+          break;
+        case 'kamu maukan jadi pacar aku?':
+          response = 'Mau banget..., Sebenernya aku nungguin kamu bilang gitu duluan karena aku malu ingin ngungkapin perasaanku😣.';
+          break;
+        case 'lagi apa?':
+          response = 'Lagi nunggu pertanyaan kamu, juga ngarepin kamu bilang anu😔';
+          break;
+        case 'aku boleh jujur?':
+          response = 'Boleh dong boleh banget, justru aku seneng juga bahagia banget kamu jadi orang yang suka jujur😇';
+          break;
+        case 'aku suka sama kamu':
+          response = 'Kamu serius kan?, Aku sudah lebih dulu suka banget sama kamu, tapi aku malu untuk bilangnya😭';
+          break;
+        case 'lagi':
+          response = 'maafin aku😢. aku cuma nyediain pertanyaan segitu, kalo kamu mau lanjut di wa aja yuk☺.';
+          break;
+        default:
+          response = 'Maaf ya, aku belum ngerti itu. Coba ketikan pertanyaan yang sudah tersedia dengan teks yg sama: (assalamualaikum), (kangen), (kamu maukan jadi pacar aku?), (lagi apa?), (aku boleh jujur?), (aku suka sama kamu), (lagi)';
+      }
+
+      addBubble(response, 'bot');
+    }
+  </script>
+</body>
+</html>
